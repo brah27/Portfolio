@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Auguste - Développeure et Intégrateur web</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="css/animate.css">
+	
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	
+	<link rel="stylesheet" href="css/flaticon.css">
+	<link rel="stylesheet" href="css/style.css">
+	
+	<!-- CSS pour les barres de progression animées -->
+	<style>
+		/* CSS POUR BARRES DE PROGRESSION ANIMÉES */
+
+/* Barres de progression horizontales (section skills) */
+.progress {
+    background-color: #e9ecef;
+    border-radius: 25px;
+    height: 15px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 25px;
+    position: relative;
+    /* Animation initiale - largeur à 0 */
+    width: 0% !important;
+    transition: width 2.5s ease-in-out;
+    background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Animation déclenchée par la classe 'animate' */
+.progress-bar.animate {
+    width: var(--target-width) !important;
+}
+
+/* Couleurs pour chaque barre */
+.progress-bar.color-1 {
+    background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+}
+
+.progress-bar.color-2 {
+    background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+}
+
+.progress-bar.color-3 {
+    background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.progress-bar.color-4 {
+    background: linear-gradient(45deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.progress-bar.color-5 {
+    background: linear-gradient(45deg, #fa709a 0%, #fee140 100%);
+}
+
+.progress-bar.color-6 {
+    background: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);
+}
+
+/* Style pour le texte de pourcentage */
+.progress-bar span {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out 2s;
+}
+
+.progress-bar.animate span {
+    opacity: 1;
+}
+
+/* Effet de survol pour les barres horizontales */
+.progress-wrap:hover .progress-bar {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transform: scaleY(1.2);
+    transition: all 0.3s ease;
+}
+
+.progress-wrap h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* CSS POUR BARRES DE PROGRESSION CIRCULAIRES */
+.progress-circle .progress {
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    background: none;
+    margin: 20px auto;
+    box-shadow: none;
+    position: relative;
+}
+
+.progress-circle .progress:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 12px solid #f4f4f4;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.progress-circle .progress > span {
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+
+.progress-circle .progress .progress-left {
+    left: 0;
+}
+
+.progress-circle .progress .progress-bar {
+    width: 100%;
+    height: 100%;
+    background: none;
+    border-width: 12px;
+    border-style: solid;
+    position: absolute;
+    top: 0;
+    border-radius: 25px;
+    transition: transform 2s ease-in-out;
+}
+
+.progress-circle .progress .progress-left .progress-bar {
+    left: 100%;
+    border-top-right-radius: 80px;
+    border-bottom-right-radius: 80px;
+    border-left: 0;
+    transform-origin: center left;
+    transform: rotate(0deg);
+}
+
+.progress-circle .progress .progress-right {
+    right: 0;
+}
+
+.progress-circle .progress .progress-right .progress-bar {
+    left: -100%;
+    border-top-left-radius: 80px;
+    border-bottom-left-radius: 80px;
+    border-right: 0;
+    transform-origin: center right;
+    transform: rotate(0deg);
+}
+
+.progress-circle .progress .progress-value {
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    background: #fff;
+    font-size: 24px;
+    color: #555;
+    line-height: calc(150px - 24px);
+    text-align: center;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out 2s;
+}
+
+.progress-circle .progress .progress-bar.border-primary {
+    border-color: #007bff;
+}
+
+.progress-circle .progress.animate .progress-left .progress-bar {
+    animation: loading-1 1.5s linear forwards;
+}
+
+.progress-circle .progress.animate .progress-right .progress-bar {
+    animation: loading-2 1.5s linear forwards;
+    animation-delay: 1.5s;
+}
+
+.progress-circle .progress.animate .progress-value {
+    opacity: 1;
+}
+
+@keyframes loading-1 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(180deg); }
+}
+
+@keyframes loading-2 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(var(--remaining-rotation)); }
+}
+
+@media (max-width: 768px) {
+    .progress-circle .progress {
+        width: 120px;
+        height: 120px;
+        line-height: 120px;
+    }
+    
+    .progress-circle .progress .progress-value {
+        line-height: calc(120px - 24px);
+    }
+}
+
+
+
+/* tabs */
+.tab-content {
+            background: white;
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-tabs {
+            border-bottom: none;
+        }
+        
+        .nav-tabs .nav-link {
+            border-radius: 10px 10px 0 0;
+            border: 1px solid #dee2e6;
+            border-bottom: none;
+            margin-right: 5px;
+			color: #000;
+        }
+        
+        .nav-tabs .nav-link.active {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            border-color: #dee2e6 #dee2e6 white;
+        }
+		.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+			color: #fff;
+			background-color: #fff;
+			border-color: #dee2e6 #dee2e6 #fff;
+		}
+/* end tabs */
+
+/* */
+
+	</style>
+
+	
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+	
+	
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light site-navbar-target" id="ftco-navbar">
+		<div class="container">
+			<a class="navbar-brand" href="index.html">Auguste<span>.</span></a>
+			<button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="oi oi-menu"></span> Menu
+			</button>
+
+			<div class="collapse navbar-collapse" id="ftco-nav">
+				<ul class="navbar-nav nav ml-auto">
+					<li class="nav-item"><a href="#home-section" class="nav-link"><span>Accueil</span></a></li>
+					<li class="nav-item"><a href="#about-section" class="nav-link"><span>à propos</span></a></li>
+					<li class="nav-item"><a href="#skills-section" class="nav-link"><span>Mes compétences</span></a></li>
+					<li class="nav-item"><a href="#services-section" class="nav-link"><span>Mon parcours</span></a></li>
+					<li class="nav-item"><a href="#projects-section" class="nav-link"><span>PORTFOLIO</span></a></li>
+					<li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<section id="home-section" class="hero">
+		<div class="home-slider owl-carousel">
+			<div class="slider-item">
+				<div class="overlay"></div>
+				<div class="container-fluid px-md-0">
+					<div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
+						<div class="one-third order-md-last img" style="background-image:url(images/work-1.1.jpg);">
+							<div class="overlay"></div>
+							<div class="overlay-1"></div>
+						</div>
+						<div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+							<div class="text">
+								<span class="subheading">Hello! Moi c'est Auguste</span>
+								<h1 class="mb-4 mt-3">Développeur <span style="color: #667eea;">web</span> &amp; Intégrateur</h1>
+								<p><a href="mailto:hountondjiauguste12@gmail.com" class="btn btn-primary">Embauchez-moi</a> <a href="PDF/cv_auguste.pdf" download class="btn btn-primary btn-outline-primary">Télécharger mon CV</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ftco-counter img bg-light" id="section-counter">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 justify-content-center counter-wrap ftco-animate">
+					<div class="block-18 d-flex">
+						<div class="icon d-flex justify-content-center align-items-center">
+							<span class="flaticon-suitcase"></span>
+						</div>
+						<div class="text">
+							<strong class="number" data-number="20">0</strong>
+							<span style="color: #667eea;">Projets Completés</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 justify-content-center counter-wrap ftco-animate">
+					<div class="block-18 d-flex">
+						<div class="icon d-flex justify-content-center align-items-center">
+							<span class="flaticon-loyalty"></span>
+						</div>
+						<div class="text">
+							<strong class="number" data-number="10">0</strong>
+							<span style="color: #667eea;">Clients satisfaits</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 justify-content-center counter-wrap ftco-animate">
+					<div class="block-18 d-flex">
+						<div class="icon d-flex justify-content-center align-items-center">
+							<span class="flaticon-coffee"></span>
+						</div>
+						<div class="text">
+							<strong class="number" data-number="478">0</strong>
+							<span style="color: #667eea;">Tasses de café</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 justify-content-center counter-wrap ftco-animate">
+					<div class="block-18 d-flex">
+						<div class="icon d-flex justify-content-center align-items-center">
+							<span class="flaticon-calendar"></span>
+						</div>
+						<div class="text">
+							<strong class="number" data-number="6">0</strong>
+							<span style="color: #667eea;">Années d'experience</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ftco-about ftco-section ftco-no-pt ftco-no-pb" id="about-section">
+		<div class="container">
+			<div class="row d-flex no-gutters">
+				<div class="col-md-6 col-lg-5 d-flex">
+					<div class="img-about img d-flex align-items-stretch">
+						<div class="overlay"></div>
+						<div class="img d-flex align-self-stretch align-items-center" style="background-image:url(images/work-1.0.jpg);">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-7 pl-md-4 pl-lg-5 py-5">
+					<div class="py-md-5">
+						<div class="row justify-content-start pb-3">
+							<div class="col-md-12 heading-section ftco-animate">
+								<span class="subheading">Présentation</span>
+								<h2 class="mb-4" style="font-size: 34px; text-transform: capitalize; color: #667eea;">À propos</h2>
+								<p>Développeur web full stack avec plus de 5 ans d'expérience, je conçois des solutions numériques modernes, performantes et centrées utilisateur. Spécialisé dans des langages de programmation comme HTML/CSS/JS , Laravel et aussi les CMS comme WordPress, Shopify et DRUPAL, je combine des compétences solides en front-end et back-end pour donner vie à des projets web sur mesure, du site vitrine à l'application métier.</p>
+
+								<ul class="about-info mt-4 px-md-0 px-2">
+									<li class="d-flex"><span>Nom:</span> <span>Auguste HOUNTONDJI</span></li>
+									<li class="d-flex"><span>Naissance:</span> <span>27 Mai 1996</span></li>
+									<li class="d-flex"><span>Addresse:</span> <span>Montréal 2960 Avenue de Repentigny</span></li>
+									<li class="d-flex"><span>Email:</span> <span>hountondjiauguste12@gmail.com</span></li>
+								</ul>
+							</div>
+							<div class="col-md-12">
+								<div class="my-interest d-lg-flex w-100">
+									<div class="interest-wrap d-flex align-items-center">
+										<div class="icon d-flex align-items-center justify-content-center" style="background: #667eea;">
+											<span class="flaticon-listening" style="color: #fff;"></span>
+										</div>
+										<div class="text">Music</div>
+									</div>
+									<div class="interest-wrap d-flex align-items-center">
+										<div class="icon d-flex align-items-center justify-content-center" style="background: #667eea;">
+											<span class="flaticon-suitcases" style="color: #fff;"></span>
+										</div>
+										<div class="text">Voyage</div>
+									</div>
+									<div class="interest-wrap d-flex align-items-center">
+										<div class="icon d-flex align-items-center justify-content-center" style="background: #667eea;">
+											<span class="flaticon-video-player" style="color: #fff;"></span>
+										</div>
+										<div class="text">Jeux vidéos</div>
+									</div>
+									<div class="interest-wrap d-flex align-items-center">
+										<div class="icon d-flex align-items-center justify-content-center" style="background: #667eea;">
+											<span class="flaticon-football" style="color: #fff;"></span>
+										</div>
+										<div class="text">Tennis</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<!-- <section class="ftco-section bg-light" id="skills-section">
+		<div class="container">
+			<div class="row justify-content-center pb-5">
+				<div class="col-md-12 heading-section text-center ftco-animate">
+					<span class="subheading">Skills</span>
+					<h2 class="mb-4">Mes compétences</h2>
+					<p>Je me forme en continu, porté par la passion et l'envie d'apprendre. <br> Dans ce métier, chaque jour est une opportunité de grandir, de tester, d'innover.</p>
+				</div>
+			</div>
+			<div class="row progress-circle mb-5">
+				<div class="col-lg-4 mb-4">
+					<div class="bg-white rounded-lg shadow p-4">
+						<h2 class="h5 font-weight-bold text-center mb-4">CSS</h2>
+						<div class="progress mx-auto" data-value='95'>
+							<span class="progress-left">
+								<span class="progress-bar border-primary"></span>
+							</span>
+							<span class="progress-right">
+								<span class="progress-bar border-primary"></span>
+							</span>
+							<div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+								<div class="h2 font-weight-bold">95<sup class="small">%</sup></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 mb-4">
+					<div class="bg-white rounded-lg shadow p-4">
+						<h2 class="h5 font-weight-bold text-center mb-4">HTML</h2>
+						<div class="progress mx-auto" data-value='98'>
+							<span class="progress-left">
+								<span class="progress-bar border-primary"></span>
+							</span>
+							<span class="progress-right">
+								<span class="progress-bar border-primary"></span>
+							</span>
+							<div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+								<div class="h2 font-weight-bold">98<sup class="small">%</sup></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 mb-4">
+					<div class="bg-white rounded-lg shadow p-4">
+						<h2 class="h5 font-weight-bold text-center mb-4">jQuery</h2>
+						<div class="progress mx-auto" data-value='68'>
+							<span class="progress-left">
+								<span class="progress-bar border-primary"></span>
+							</span>
+							<span class="progress-right">
+								<span class="progress-bar border-primary"></span>
+							</span>
+							<div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+								<div class="h2 font-weight-bold">68<sup class="small">%</sup></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 mb-4">
+					<div class="bg-white rounded-lg shadow p-4">
+						<h2 class="h5 font-weight-bold text-center mb-4">Photoshop</h2>
+						<div class="progress mx-auto" data-value='92'>
+							<span class="progress-left">
+								<span class="progress-bar border-primary"></span>
+							</span>
+							<span class="progress-right">
+								<span class="progress-bar border-primary"></span>
+							</span>
+							<div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+								<div class="h2 font-weight-bold">92<sup class="small">%</sup></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 mb-4">
+					<div class="bg-white rounded-lg shadow p-4">
+						<h2 class="h5 font-weight-bold text-center mb-4">WordPress</h2>
+						<div class="progress mx-auto" data-value='83'>
+							<span class="progress-left">
+								<span class="progress-bar border-primary"></span>
+							</span>
+							<span class="progress-right">
+								<span class="progress-bar border-primary"></span>
+							</span>
+							<div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+								<div class="h2 font-weight-bold">83<sup class="small">%</sup></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 mb-4">
+					<div class="bg-white rounded-lg shadow p-4">
+						<h2 class="h5 font-weight-bold text-center mb-4">SEO</h2>
+						<div class="progress mx-auto" data-value='95'>
+							<span class="progress-left">
+								<span class="progress-bar border-primary"></span>
+							</span>
+							<span class="progress-right">
+								<span class="progress-bar border-primary"></span>
+							</span>
+							<div class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+								<div class="h2 font-weight-bold">95<sup class="small">%</sup></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section> -->
+
+	<section class="ftco-section bg-light" id="skills-horizontal-section">
+		<div class="container">
+			<div class="row justify-content-center pb-5">
+				<div class="col-md-12 heading-section text-center ftco-animate fadeInUp ftco-animated">
+					<h1 class="big big-2">Skills</h1>
+					<h2 class="mb-4 text-primary">Compétences techniques</h2>
+					<p>Mes niveaux de maîtrise dans les différentes technologies</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 animate-box">
+					<h2 class="mb-4 text-primary">Back-end</h2>
+					<div class="progress-wrap ftco-animate fadeInUp ftco-animated">
+						<h3>Laravel</h3>
+						<div class="progress">
+							<div class="progress-bar color-3" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="--target-width: 80%; width: 80%;">
+								<span>80%</span>
+							</div>
+						</div>
+					</div>
+					<div class="progress-wrap ftco-animate fadeInUp ftco-animated">
+						<h3>PHP</h3>
+						<div class="progress">
+							<div class="progress-bar color-1" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="--target-width: 70%; width: 70%;">
+								<span>70%</span>
+							</div>
+						</div>
+					</div>
+					<div class="progress-wrap ftco-animate fadeInUp ftco-animated">
+						<h3>Mysql</h3>
+						<div class="progress">
+							<div class="progress-bar color-2" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="--target-width: 70%; width: 70%;">
+								<span>70%</span>
+							</div>
+						</div>
+					</div>
+					<div class="progress-wrap ftco-animate fadeInUp ftco-animated">
+						<h3>Symfony</h3>
+						<div class="progress">
+							<div class="progress-bar color-3" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="--target-width: 60%; width: 60%;">
+								<span>60%</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 animate-box">
+					<h2 class="mb-4 text-primary">Front-end</h2>
+					<div class="progress-wrap ftco-animate fadeInUp ftco-animated">
+						<h3>HTML</h3>
+						<div class="progress">
+							<div class="progress-bar color-4" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="--target-width: 90%; width: 90%;">
+								<span>90%</span>
+							</div>
+						</div>
+					</div>
+					<div class="progress-wrap ftco-animate fadeInUp ftco-animated">
+						<h3>CSS</h3>
+						<div class="progress">
+							<div class="progress-bar color-5" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="--target-width: 90%; width: 90%;">
+								<span>90%</span>
+							</div>
+						</div>
+					</div>
+					<div class="progress-wrap ftco-animate fadeInUp ftco-animated">
+						<h3>Tailwind CSS</h3>
+						<div class="progress">
+							<div class="progress-bar color-6" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="--target-width: 90%; width: 90%;">
+								<span>90%</span>
+							</div>
+						</div>
+					</div>
+					<div class="progress-wrap ftco-animate fadeInUp ftco-animated">
+						<h3>JS</h3>
+						<div class="progress">
+							<div class="progress-bar color-6" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="--target-width: 70%; width: 70%;">
+								<span>70%</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 animate-box">
+					<h2 class="mb-4 text-primary">CMS</h2>
+					<div class="progress-wrap ftco-animate fadeInUp ftco-animated">
+						<h3>WordPress</h3>
+						<div class="progress">
+							<div class="progress-bar color-1" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="--target-width: 90%; width: 90%;">
+								<span>90%</span>
+							</div>
+						</div>
+					</div>
+					<div class="progress-wrap ftco-animate fadeInUp ftco-animated">
+						<h3>Shopify</h3>
+						<div class="progress">
+							<div class="progress-bar color-2" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="--target-width: 95%; width: 95%;">
+								<span>95%</span>
+							</div>
+						</div>
+					</div>
+					<div class="progress-wrap ftco-animate fadeInUp ftco-animated">
+						<h3>Drupal</h3>
+						<div class="progress">
+							<div class="progress-bar color-3" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="--target-width: 80%; width: 80%;">
+								<span>80%</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 animate-box">
+					<h2 class="mb-4 text-primary">Automatisaion No code/low code</h2>
+					<div class="progress-wrap ftco-animate fadeInUp ftco-animated">
+						<h3>Zapier</h3>
+						<div class="progress">
+							<div class="progress-bar color-4" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="--target-width: 85%; width: 85%;">
+								<span>85%</span>
+							</div>
+						</div>
+					</div>
+					<div class="progress-wrap ftco-animate fadeInUp ftco-animated">
+						<h3>Make</h3>
+						<div class="progress">
+							<div class="progress-bar color-5" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="--target-width: 85%; width: 85%;">
+								<span>85%</span>
+							</div>
+						</div>
+					</div>
+					<div class="progress-wrap ftco-animate fadeInUp ftco-animated">
+						<h3>Brevo (ex-Sendinblue)</h3>
+						<div class="progress">
+							<div class="progress-bar color-6" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="--target-width: 95%; width: 95%;">
+								<span>95%</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ftco-section" id="services-section">
+		<div class="container">
+			<div class="row justify-content-center pb-5">
+					<div class="col-md-12 heading-section text-center ftco-animate fadeInUp ftco-animated">
+						<h1 class="big big-2">Parcours</h1>
+						<h2 class="mb-4 text-primary">Expérience professionnelle</h2>
+						<p>Mon parcours au fil du temps</p>
+					</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6 col-lg-6">
+					<div class="media block-6 services d-block bg-primary text-white rounded-lg ftco-animate" style=" border: 1px solid #667eea;">
+						<!-- <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-3d-design"></span></div> -->
+						<div class="media-body">
+							<h3 class="heading mb-3 text-white">2025-Aujourd'hui</h3>
+							<h6 class="subheading">Responsable IT</h6>
+							<p>Polaris Asso, Dakar-Sénégal</p>
+							<a href="" class="text-white" data-toggle="modal" data-target="#exampleModalCenter">Voir plus ...</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-6">
+					<div class="media block-6 services d-block bg-white rounded-lg ftco-animate"  style=" border: 1px solid #667eea;">
+						<!-- <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-3d-design"></span></div> -->
+						<div class="media-body">
+							<h3 class="heading mb-3">2021-2025</h3>
+							<h6 class="subheading">Prestation en Freelance</h6>
+							<p>Quelques projets de clients en Freelance</p>
+							<a href="" class="text-warning" data-toggle="modal" data-target="#exampleModalCenter1">Voir plus ...</a>
+						</div>
+					</div> 
+				</div>
+				<div class="col-md-6 col-lg-6">
+					<div class="media block-6 services d-block bg-white rounded-lg ftco-animate" style=" border: 1px solid #667eea;">
+						<!-- <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-3d-design"></span></div> -->
+						<div class="media-body">
+							<h3 class="heading mb-3">2023-2024</h3>
+							<h6 class="subheading">Développeur Web</h6>
+							<p>Mat-outils Pro, Dakar-Sénégal</p>
+							<a href="" class="text-warning" data-toggle="modal" data-target="#exampleModalCenter2">Voir plus ...</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-6">
+					<div class="media block-6 services d-block bg-white rounded-lg ftco-animate" style=" border: 1px solid #667eea;">
+						<!-- <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-3d-design"></span></div> -->
+						<div class="media-body">
+							<h3 class="heading mb-3">2019-2022</h3>
+							<h6 class="subheading">Développeur Front-end</h6>
+							<p>PayDunya , Dakar-Sénégal</p>
+							<a href="" class="text-warning" data-toggle="modal" data-target="#exampleModalCenter3">Voir plus ...</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- <div class="row">
+				<div class="col-md-6 col-lg-3">
+					<div class="media block-6 services d-block bg-white rounded-lg shadow ftco-animate">
+						<div class="icon shadow d-flex align-items-center justify-content-center"><span class="flaticon-computer"></span></div>
+						<div class="media-body">
+							<h3 class="heading mb-3">Branding</h3>
+							<p>A small river named Duden flows by their place and supplies.</p>
+						</div>
+					</div> 
+				</div>
+				<div class="col-md-6 col-lg-3">
+					<div class="media block-6 services d-block bg-white rounded-lg shadow ftco-animate">
+						<div class="icon shadow d-flex align-items-center justify-content-center"><span class="flaticon-vector"></span></div>
+						<div class="media-body">
+							<h3 class="heading mb-3">Icon Design</h3>
+							<p>A small river named Duden flows by their place and supplies.</p>
+						</div>
+					</div> 
+				</div>
+				<div class="col-md-6 col-lg-3">
+					<div class="media block-6 services d-block bg-white rounded-lg shadow ftco-animate">
+						<div class="icon shadow d-flex align-items-center justify-content-center"><span class="flaticon-vector"></span></div>
+						<div class="media-body">
+							<h3 class="heading mb-3">Graphic Design</h3>
+							<p>A small river named Duden flows by their place and supplies.</p>
+						</div>
+					</div> 
+				</div>
+				<div class="col-md-6 col-lg-3">
+					<div class="media block-6 services d-block bg-white rounded-lg shadow ftco-animate">
+						<div class="icon shadow d-flex align-items-center justify-content-center"><span class="flaticon-zoom"></span></div>
+						<div class="media-body">
+							<h3 class="heading mb-3">SEO</h3>
+							<p>A small river named Duden flows by their place and supplies.</p>
+						</div>
+					</div> 
+				</div>
+			</div> -->
+		</div>
+	</section>
+
+	<!-- Voir plus -->
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<ul>
+				<li>Suivi d'une équipe de développeurs</li>
+				<li>Refonte site web (Wordpress)</li>
+				<li>Gestion d'une base de donnée de contact (Brevo)</li>
+				<li>Automatisaion de certaines taches (zapier)</li>
+				<li>Mise en place d'agents conversationnels IA (Mistral API)</li>
+			</ul>
+		</div>
+		</div>
+	</div>
+	</div>
+	<!-- end vmodal1 -->
+	 <!-- Modal1 -->
+	<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<ul>
+				<li>Conception de Plateformes E-commerce et de site webs (Wordpress, Shopify)</li>
+				<li>Configuration Environnement de dev (Homestead, LWS)</li>
+			</ul>
+		</div>
+		</div>
+	</div>
+	</div>
+	<!-- end modal1 -->
+	 <!-- Modal2 -->
+	<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered " role="document">
+		<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<ul>
+				<li>Refonte du site web (Wordpress)</li>
+				<li>Concepion d'un Crm de gestion interne (Laravel)</li>
+				<li>Refonte du Blog (Wordpress)</li>
+				<li>Maintenance des serveurs (LWS et OVH)</li>
+			</ul>
+		</div>
+		</div>
+	</div>
+	</div>
+	<!-- end modal2 -->
+	 <!-- Modal3 -->
+	<div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<ul>
+				<li>Refonte du site web (HTML,CSS,JS)</li>
+				<li>Front-end du dashboard (Tailwind css, Vue js) </li>
+				<li>Refonte du Blog (Wordpress)</li>
+				<li>conception de landings pages (wordpress, Drupal)</li>
+			</ul>
+		</div>
+		</div>
+	</div>
+	</div>
+	<!-- end modal3 -->
+	<section class="ftco-section" style="padding-bottom: 8em;">
+
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="row justify-content-center pb-5">
+					<div class="col-md-12 heading-section text-center ftco-animate fadeInUp ftco-animated">
+						<h1 class="big big-2">Réalisations</h1>
+						<h2 class="mb-4 text-primary">Portfolio</h2>
+						<p>Mes niveaux de maîtrise dans les différentes technologies</p>
+					</div>
+				</div>
+				<div class="col-md-12">
+					
+					<!-- Tabs Navigation -->
+					<ul class="nav nav-tabs" id="myTab" role="tablist" style="justify-content:center;">
+						<li class="nav-item">
+							<a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">
+								Tout
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="tab2-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">
+								Sites E-commerce
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="tab3-tab" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">
+								Plateformes web
+							</a>
+						</li>
+					</ul>
+
+					<!-- Tabs Content -->
+					<div class="tab-content" id="myTabContent">
+						
+						<!-- Tab 1 Content -->
+						<div class="tab-pane fade show active" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+							
+							<div class="row">
+								<div class="col-md-6">
+									<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/palmethic.png);">
+										<div class="text text-center p-4">
+											<a href="" class="btn btn-primary">voir plus</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/paydunya.png);">
+										<div class="text text-center p-4">
+											<a href="" class="btn btn-primary">voir plus</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/caritan-vacances.png);">
+										<div class="text text-center p-4">
+											<a href="" class="btn btn-primary">voir plus</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/swd.png);">
+										<div class="text text-center p-4">
+											<a href="" class="btn btn-primary">voir plus</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/mat-outils.png);">
+										<div class="text text-center p-4">
+											<a href="" class="btn btn-primary">voir plus</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/dgitalstores.png);">
+										<div class="text text-center p-4">
+											<a href="" class="btn btn-primary">voir plus</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<!-- Tab 2 Content -->
+						<div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/palmethic.png);">
+										<div class="text text-center p-4">
+											<a href="" class="btn btn-primary">voir plus</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/mat-outils.png);">
+										<div class="text text-center p-4">
+											<a href="" class="btn btn-primary">voir plus</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/dgitalstores.png);">
+										<div class="text text-center p-4">
+											<a href="" class="btn btn-primary">voir plus</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Tab 3 Content -->
+						<div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/paydunya.png);">
+										<div class="text text-center p-4">
+											<a href="" class="btn btn-primary">voir plus</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/caritan-vacances.png);">
+										<div class="text text-center p-4">
+											<a href="" class="btn btn-primary">voir plus</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="project img shadow ftco-animate d-flex justify-content-center align-items-center" style="background-image: url(images/swd.png);">
+										<div class="text text-center p-4">
+											<a href="" class="btn btn-primary">voir plus</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<section class="ftco-hireme" style="background-color: #667eea ;">
+		<div class="container">
+			<div class="row justify-content-between">
+				<div class="col-md-8 col-lg-8 d-flex align-items-center">
+					<div class="w-100 py-4">
+						<h2>Vous avez un projet, une idée ou simplement une question ?</h2>
+						<p>
+						Je suis toujours ouvert aux nouvelles opportunités, collaborations et échanges autour du développement web et des technologies</p>
+						<p class="mb-0"><a href="mailto:hountondjiauguste12@gmail.com" class="btn btn-white py-3 px-4">Me contacter</a></p>
+					</div>
+				</div>
+				<div class="col-md-4 col-lg-4 d-flex align-items-end">
+					<img src="images/work-0.1.png" class="img-fluid" alt="">
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<section class="ftco-section" id="services-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-12 heading-section text-center ftco-animate mb-5">
+					<span class="subheading">Pour plus d'informations</span>
+					<h2 class="mb-4">Contact</h2>
+					<!-- <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p> -->
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6 col-lg-4">
+					<div class="media block-6 services d-block bg-white rounded-lg shadow ftco-animate">
+						<div class="icon d-flex align-items-center justify-content-center"><i class="fa fa-map-marker fa-3x"></i></div>
+						<div class="media-body">
+							<h3 class="heading mb-3">Adresse</h3>
+							<p>2960 Avenue de Repentigny Montréal</p>
+						</div>
+					</div> 
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="media block-6 services d-block bg-white rounded-lg shadow ftco-animate">
+						<div class="icon shadow d-flex align-items-center justify-content-center"><span class="flaticon-app-development"></span></div>
+						<div class="media-body">
+							<h3 class="heading mb-3">Email / Phone</h3>
+							<ul>
+								<li><p>hountondjiauguste12@gmail.com</p></li>
+								<li><p>+221 77 284 36 03</p></li>
+							</ul>
+						</div>
+					</div> 
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="media block-6 services d-block bg-white rounded-lg shadow ftco-animate">
+						<div class="icon shadow d-flex align-items-center justify-content-center"><span class="flaticon-web-programming"></span></div>
+						<div class="media-body">
+							<h3 class="heading mb-3">suivez-moi</h3>
+							<p><a href="https://www.linkedin.com/in/auguste-hountondji/" target="_blank"><i class="fa fa-linkedin fa-3x"></i></a></p>
+						</div>
+					</div> 
+				</div>
+			</div>
+		</div>
+	</section>
+	
+
+	<footer class="ftco-section" style="background-color: #232931; padding: 1em 0 !important;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tout droits réservé</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+		
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/jquery.animateNumber.min.js"></script>
+	<script src="js/scrollax.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="js/google-map.js"></script>
+	<script src="js/main.js"></script>
+	
+	<!-- JavaScript pour les animations des barres de progression -->
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+    
+    // ANIMATION DES BARRES HORIZONTALES
+    function animateHorizontalProgressBars() {
+        const progressBars = document.querySelectorAll('.progress-wrap .progress-bar');
+        
+        progressBars.forEach((bar, index) => {
+            bar.classList.remove('animate');
+            
+            const styleWidth = bar.style.width;
+            if (styleWidth) {
+                bar.style.setProperty('--target-width', styleWidth);
+            }
+            
+            setTimeout(() => {
+                bar.classList.add('animate');
+            }, index * 300);
+        });
+    }
+
+    // ANIMATION DES BARRES CIRCULAIRES
+    function animateCircularProgressBars() {
+        const circularBars = document.querySelectorAll('.progress-circle .progress');
+        
+        circularBars.forEach((progressEl, index) => {
+            const value = parseInt(progressEl.getAttribute('data-value'));
+            
+            if (value) {
+                const rotation = (value * 360) / 100;
+                let firstHalfRotation = 180;
+                let secondHalfRotation = rotation - 180;
+                
+                if (value <= 50) {
+                    firstHalfRotation = rotation;
+                    secondHalfRotation = 0;
+                }
+                
+                progressEl.style.setProperty('--remaining-rotation', secondHalfRotation + 'deg');
+                
+                setTimeout(() => {
+                    progressEl.classList.add('animate');
+                    
+                    if (value <= 50) {
+                        const rightBar = progressEl.querySelector('.progress-right .progress-bar');
+                        if (rightBar) {
+                            rightBar.style.display = 'none';
+                        }
+                    }
+                }, index * 200);
+            }
+        });
+    }
+
+    // COMPTEUR ANIMÉ
+    function animateCounters() {
+        const counters = document.querySelectorAll('.number');
+        
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-number'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += step;
+                counter.textContent = Math.floor(current);
+                
+                if (current >= target) {
+                    counter.textContent = target;
+                    clearInterval(timer);
+                }
+            }, 16);
+        });
+    }
+
+    // INTERSECTION OBSERVER
+    const observerOptions = {
+        threshold: 0.3,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const horizontalObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    animateHorizontalProgressBars();
+                }, 500);
+                horizontalObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const circularObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    animateCircularProgressBars();
+                }, 300);
+                circularObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    animateCounters();
+                }, 200);
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // INITIALISATION
+    const skillsSections = document.querySelectorAll('[id*="skills"]');
+    skillsSections.forEach(section => {
+        if (section.querySelector('.progress-wrap')) {
+            horizontalObserver.observe(section);
+        }
+        
+        if (section.querySelector('.progress-circle')) {
+            circularObserver.observe(section);
+        }
+    });
+
+    const counterSection = document.getElementById('section-counter');
+    if (counterSection) {
+        counterObserver.observe(counterSection);
+    }
+
+    // FONCTIONS GLOBALES
+    window.animateHorizontalProgressBars = animateHorizontalProgressBars;
+    window.animateCircularProgressBars = animateCircularProgressBars;
+    window.animateCounters = animateCounters;
+
+    // FALLBACK ANIMATION
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const skillsInView = document.querySelector('[id*="skills"]');
+            if (skillsInView && isElementInViewport(skillsInView)) {
+                animateHorizontalProgressBars();
+                animateCircularProgressBars();
+            }
+            
+            const counterInView = document.getElementById('section-counter');
+            if (counterInView && isElementInViewport(counterInView)) {
+                animateCounters();
+            }
+        }, 1000);
+    });
+
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+});
+	</script>
+	
+</body>
+</html>
